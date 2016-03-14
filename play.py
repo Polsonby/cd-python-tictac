@@ -51,9 +51,9 @@ def getPlayerCharacter():
 
 def swapTurn():
 	global turn
-
-	turn -= 0.5
-	turn *= -1
+	
+	turn -= 000.5
+	turn *= -1.0
 	turn += 0.5
 
 def startGame():
@@ -67,11 +67,25 @@ def startGame():
 	print("%s will go first" % ['The computer', 'You'][turn])
 	time.sleep(long_pause)
 
-	#test the board
-	board[0] = [computer_character, player_character][turn]
 	drawBoard(board)
-	time.sleep(long_pause)
+	time.sleep(short_pause)
 
+	gameLoop()
+
+def gameLoop():
+	while True:
+		if turn == 1.0:
+			playerTurn()
+		else:
+			computerTurn()		
+		
+		swapTurn()
+		time.sleep(short_pause)
+	
+		drawBoard(board)
+		time.sleep(long_pause)
+
+def playerTurn():
 	print('Your turn')
 	time.sleep(short_pause)
 
@@ -80,9 +94,16 @@ def startGame():
 		res = playMove(player_character, move)
 		if res == 1:
 			break
-	time.sleep(short_pause)
+def computerTurn():
+	print('I will go... ')
+	time.sleep(long_pause)
+	
+	for i in range(0, 9):
+		res = playMove(computer_character, i)
+		if res == 1:
+			break		
 
-	drawBoard(board)
+	print("There!")
 
 def getMove():
 	while True:
@@ -112,7 +133,6 @@ def playMove(char, hole):
 
 	if board[hole] == space_char:
 		board[hole] = char
-		swapTurn()
 		return 1
 	else:
 		print("That space is taken. Cheater!\n")
@@ -120,5 +140,3 @@ def playMove(char, hole):
 		return 0
 
 startGame()
-
-#hello its nathan
