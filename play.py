@@ -35,9 +35,27 @@ def getPlayerCharacter():
 		else:
 			print("Sorry but this must be either %s or %s - Try again!" % (x_char, o_char))
 
-print("NOUGHTS")
+def boxFree(board,number):
+	if board[number] == space_char:
+		return True
+	else:
+		return	False 
+		
 
+
+
+
+
+
+
+
+
+
+print("NOUGHTS")
+#boxFree(board,1)
 getPlayerCharacter()
 print(player_character)
 
 drawBoard(board)
+
+
