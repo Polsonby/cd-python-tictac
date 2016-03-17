@@ -2,22 +2,22 @@ x_char = 'X'
 o_char = 'O'
 space_char = ' '
 
-board = [space_char, space_char, space_char,
+board = [space_char, o_char, space_char,
 		 space_char, space_char, space_char,
 		 space_char, space_char, space_char]
 player_character = ''
 
 def drawBoard(data):
 	print("""
-   |   |   
+1  |2  |3  
  %s | %s | %s  
    |   |
 -----------
-   |   |   
+4  |5  |6  
  %s | %s | %s
    |   |   
 -----------
-   |   |
+7  |8  |9
  %s | %s | %s 
    |   |
 """ % tuple(data))
@@ -28,7 +28,7 @@ def getPlayerCharacter():
 	# loop forever
 	keep_looping = True
 	while keep_looping:
-		test_string = input("Would you like to be %s or %s? " % (x_char, o_char))
+		test_string = input("Would you like to be %s or %s? " % (x_char, o_char)).upper()
 		if test_string == x_char or test_string == o_char:
 			player_character = test_string
 			keep_looping = False
@@ -41,21 +41,32 @@ def boxFree(board,number):
 	else:
 		return	False 
 		
-
-
-
-
-
-
-
-
-
+def writePosition(user_character, position):
+	board[position] = user_character;
 
 print("NOUGHTS")
+
 #boxFree(board,1)
 getPlayerCharacter()
 print(player_character)
 
+
 drawBoard(board)
 
 
+while True:
+	drawBoard(board)
+
+	while True:
+		choice = int(input("Where would like to go? "))
+
+		if choice > 9:
+			print ("this is too high")
+		elif choice < 1:
+			print ("this is too low")
+		else:
+			break
+			
+	choice -= 1
+
+	writePosition('X', choice);
