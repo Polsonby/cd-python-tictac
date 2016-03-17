@@ -22,6 +22,25 @@ def drawBoard(data):
    |   |
 """ % tuple(data))
 
+def getPlayerMove():
+	while True:
+		try:
+			choice = int(input("Where would like to go? "))
+		except ValueError:
+			print("This number CANNOT be a decimal!")
+			continue
+	
+		if choice > 9:
+			print ("This is too high")
+		elif choice < 1:
+			print ("this is too low")
+		else:
+			break
+			
+	choice -= 1
+
+	writePosition('X', choice);
+
 def getPlayerCharacter():
 	global player_character
 
@@ -45,17 +64,5 @@ print(player_character)
 
 while True:
 	drawBoard(board)
+	getPlayerMove()
 
-	while True:
-		choice = int(input("Where would like to go? "))
-
-		if choice > 9:
-			print ("this is too high")
-		elif choice < 1:
-			print ("this is too low")
-		else:
-			break
-			
-	choice -= 1
-
-	writePosition('X', choice);
