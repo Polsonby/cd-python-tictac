@@ -2,7 +2,7 @@ x_char = 'X'
 o_char = 'O'
 space_char = ' '
 
-board = [space_char, o_char, space_char,
+board = [space_char, space_char, space_char,
 		 space_char, space_char, space_char,
 		 space_char, space_char, space_char]
 player_character = ''
