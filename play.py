@@ -26,19 +26,19 @@ def getPlayerMove():
 	while True:
 		try:
 			choice = int(input("Where would like to go? "))
+			choice -= 1
 		except ValueError:
 			print("This number CANNOT be a decimal!")
 			continue
-	
-		if choice > 9:
+	    
+		if choice > 8:
 			print ("This is too high")
-		elif choice < 1:
+		elif choice < 0:
 			print ("this is too low")
+		elif not boxFree(board, choice):
+			print ("This space has already been taken!")
 		else:
 			break
-			
-	choice -= 1
-
 	writePosition('X', choice);
 
 def getPlayerCharacter():
@@ -61,7 +61,7 @@ def boxFree(board,number):
 		return	False 
 		
 def writePosition(user_character, position):
-	board[position] = user_character;
+	board[position] = user_character
 
 print("NOUGHTS")
 
