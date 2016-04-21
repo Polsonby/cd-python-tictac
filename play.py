@@ -1,3 +1,5 @@
+import random
+
 x_char = 'X'
 o_char = 'O'
 space_char = ' '
@@ -5,7 +7,9 @@ space_char = ' '
 board = [space_char, space_char, space_char,
 		 space_char, space_char, space_char,
 		 space_char, space_char, space_char]
+
 player_character = ''
+computer_character = ''
 
 def drawBoard(data):
 	print("""
@@ -22,6 +26,16 @@ def drawBoard(data):
    |   |
 """ % tuple(data))
 
+def validMove(move):
+	if move > 8:
+		return False
+	elif move < 0:
+		return False
+	elif not boxFree(move):
+		return False
+	else:
+		return True
+
 def getPlayerMove():
 	while True:
 		try:
@@ -34,15 +48,24 @@ def getPlayerMove():
 		if choice > 8:
 			print ("This is too high")
 		elif choice < 0:
-			print ("this is too low")
-		elif not boxFree(board, choice):
+			print ("This is too low")
+		elif not boxFree(choice):
 			print ("This space has already been taken!")
 		else:
 			break
-	writePosition('X', choice);
+	writePosition(player_character, choice);
+
+def calculateComputerMove():
+	while True:
+		choice = random.randint(1, 9) - 1
+		
+		if validMove(choice):
+			break
+	
+	writePosition(computer_character, choice);
 
 def getPlayerCharacter():
-	global player_character
+	global player_character, computer_character
 
 	# loop forever
 	keep_looping = True
@@ -50,12 +73,13 @@ def getPlayerCharacter():
 		test_string = input("Would you like to be %s or %s? " % (x_char, o_char)).upper()
 		if test_string == x_char or test_string == o_char:
 			player_character = test_string
+			computer_character = o_char if player_character == x_char else x_char
 			keep_looping = False
 		else:
 			print("Sorry but this must be either %s or %s - Try again!" % (x_char, o_char))
 
-def boxFree(board, number):
-	if board[number] == space_char:
+def boxFree(move):
+	if board[move] == space_char:
 		return True
 	else:
 		return	False 
@@ -70,10 +94,9 @@ getPlayerCharacter()
 print(player_character)
 
 
-drawBoard(board)
-
+#drawBoard(board)
 
 while True:
 	drawBoard(board)
 	getPlayerMove()
-
+	calculateComputerMove()
