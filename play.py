@@ -96,7 +96,13 @@ print(player_character)
 
 #drawBoard(board)
 
+def isWinner(char):
+	if board[0] == char and board[1] == char and board[2] == char:
+		return True
+
 while True:
 	drawBoard(board)
 	getPlayerMove()
 	calculateComputerMove()
+	print("Game won" if isWinner('X') or isWinner('O') else "Game still playing")
+
