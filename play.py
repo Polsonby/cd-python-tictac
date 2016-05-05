@@ -42,7 +42,7 @@ def getPlayerMove():
 			choice = int(input("Where would like to go? "))
 			choice -= 1
 		except ValueError:
-			print("This number CANNOT be a decimal!")
+			print("This number must be an integer!")
 			continue
 	    
 		if choice > 8:
