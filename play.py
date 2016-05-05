@@ -1,5 +1,5 @@
 import random
-
+game_in_progress = True
 x_char = 'X'
 o_char = 'O'
 space_char = ' '
@@ -44,7 +44,7 @@ def getPlayerMove():
 		except ValueError:
 			print("This number must be an integer!")
 			continue
-	    
+		
 		if choice > 8:
 			print ("This is too high")
 		elif choice < 0:
@@ -95,9 +95,27 @@ print(player_character)
 def isWinner(char):
 	if board[0] == char and board[1] == char and board[2] == char:
 		return True
+def getGameStatus():
+	#print("Game won" if isWinner('X') or isWinner('O') else "Game still playing")
+	if isWinner('X'):
+		return 1
+	elif isWinner("O"):
+		return 2
+	else:
+		return 0
+def printStatusMessage(status):
+	if status == 1:
+		print ("x won!")
+	elif status == 2:
+		print ("O won")
 
-while True:
+
+		
+while game_in_progress == True:
 	drawBoard(board)
 	getPlayerMove()
 	calculateComputerMove()
-	print("Game won" if isWinner('X') or isWinner('O') else "Game still playing")
+	status = getGameStatus()
+	printStatusMessage(status)
+
+
