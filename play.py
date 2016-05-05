@@ -89,12 +89,8 @@ def writePosition(user_character, position):
 
 print("Naughts and Crosses\n")
 
-#boxFree(board,1)
 getPlayerCharacter()
 print(player_character)
-
-
-#drawBoard(board)
 
 def isWinner(char):
 	if board[0] == char and board[1] == char and board[2] == char:
