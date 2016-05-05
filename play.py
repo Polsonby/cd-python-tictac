@@ -87,7 +87,7 @@ def boxFree(move):
 def writePosition(user_character, position):
 	board[position] = user_character
 
-print("NOUGHTS")
+print("Naughts and Crosses\n")
 
 #boxFree(board,1)
 getPlayerCharacter()
@@ -105,5 +105,3 @@ while True:
 	getPlayerMove()
 	calculateComputerMove()
 	print("Game won" if isWinner('X') or isWinner('O') else "Game still playing")
-
-#test
