@@ -93,8 +93,7 @@ getPlayerCharacter()
 print(player_character)
 
 def isWinner(char):
-	if board[0] == char and board[1] == char and board[2] == char:
-		return True
+	return (board[0] == char and board[1] == char and board[2] == char) or (board[0] == char and board[4] == char and board[8] == char) or (board[0] == char and board[3] == char and board[6] == char) or (board[1] == char and board[4] == char and board[7] == char) or (board[2] == char and board[4] == char and board[6] == char) or (board[2] == char and board[5] == char and board[8] == char)or (board[3] == char and board[4] == char and board[5] == char)or (board[6] == char and board[7] == char and board[8] == char)
 def getGameStatus():
 	#print("Game won" if isWinner('X') or isWinner('O') else "Game still playing")
 	if isWinner('X'):
