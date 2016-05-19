@@ -39,7 +39,7 @@ def validMove(move):
 def getPlayerMove():
 	while True:
 		try:
-			choice = int(input("Where would like to go? "))
+			choice = int(input("Where would you like to go? "))
 			choice -= 1
 		except ValueError:
 			print("This number must be an integer!")
